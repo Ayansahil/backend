@@ -1,0 +1,43 @@
+/*
+ -server create karna
+ -server ko config karna
+*/
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+const notes = [];
+
+
+
+app.post("/notes", (req, res) => {
+  console.log(req.body);
+  notes.push(req.body);
+
+  console.log(notes);
+  res.send("note created✅");
+});
+
+
+
+app.get("/notes", (req, res) => {
+  res.send(notes);
+});
+
+
+
+app.delete("/notes/:id", (req, res) => {
+  delete notes[req.params.id]; //array se delete ni hota hai bus uski jagah empty milti hai
+  res.send("note deleted✅");
+});
+
+
+
+app.patch("/notes/:id", (req, res) => {
+  notes[req.params.id].description = req.body.description; // Update the partial description using patch
+  res.send("note updated✅");
+});
+
+module.exports = app;
