@@ -4,28 +4,37 @@ const noteModel = require("./models/note.model");
 const app = express();
 app.use(express.json()); //middleware
 
+/**
+ * - POST /notes
+ * - req.body => {title,description}
+ */
+
 app.post("/notes", async (req, res) => {
   const { title, description } = req.body;
 
-  const note = await noteModel.create({
+  const notes = await noteModel.create({
     title,
     description,
   });
 
   res.status(201).json({
-    message:"Note Created ✅",
-    note
-  })
-
+    message: "Notes Created ✅",
+    notes,
+  });
 });
 
+/**
+ * - GET /notes
+ * - fetch all the notes Data
+ */
 
+app.get("/notes", async (req, res) => {
+  const notes = await noteModel.find();
 
-app.get("/notes",(req,res)=>{
-  
-})
-
-
-
+  res.status(200).json({
+    message: "Notes fetched ✅",
+    notes,
+  });
+});
 
 module.exports = app;
