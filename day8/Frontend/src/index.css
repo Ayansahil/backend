@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  background-color: rgb(55, 55, 55);
+  font-family: system-ui;
+}
+
+.notes {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+    flex-wrap: wrap;
+}
+
+.note {
+  background-color: #909090;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 20rem;
+  color: white;
+}
