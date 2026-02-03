@@ -2,10 +2,13 @@ const express = require("express");
 const app = express();
 const noteModel = require("../src/models/note.model");
 const cors =require('cors')
+const path =require('path');
+const { log } = require("console");
 
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("./public")) //middleware that make public file available
 
 /**
  * - POST /api/notes
@@ -80,5 +83,12 @@ app.put("/api/notes/:id", async (req, res) => {
     message: "note fully updated ✅",
   });
 });
+
+
+app.use('*name',(req,res)=>{
+  res.sendFile(path.join(__dirname, ".." ,"/public/index.html"))
+})
+
+
 
 module.exports = app;

@@ -4,12 +4,18 @@ This frontend is built to **consume backend APIs** and display notes stored in *
 
 ---
 
-## 🚀 What This Frontend Does
+## 🚀 What This Application Does
 
 * Displays notes fetched from backend API
 * Sends HTTP requests using **Axios**
 * Renders dynamic data in React UI
 * Works with backend CRUD APIs
+- Displays notes stored in MongoDB
+- Creates new notes from frontend form
+- Updates existing notes
+- Deletes notes
+- Syncs UI automatically after each operation
+- Uses real backend APIs (no static data)
 
 ---
 
@@ -40,7 +46,23 @@ Axios is used to fetch notes from the backend:
 axios.get("http://localhost:3000/api/notes")
 ```
 
-Dummy data was removed once the backend API was ready, and real data from MongoDB is now rendered.
+Axios is used to create ,update & delete notes from the backend:
+
+```js
+axios.post("http://localhost:3000/api/notes", {
+  title,
+  description,
+});
+
+axios.put("http://localhost:3000/api/notes/:id", {
+  title,
+  description,
+});
+
+axios.delete("http://localhost:3000/api/notes/:id");
+```
+
+
 
 ---
 
@@ -72,7 +94,13 @@ Dummy data was removed once the backend API was ready, and real data from MongoD
 
 ## 📌 Project Status
 
-✅ Learning / Development Phase
+🎯 What I Learned from This Project
+
+* Real frontend–backend communication
+* REST API integration in React
+* Managing CRUD state properly
+* Handling edit/update workflows
+* Building production-style full stack apps
 
 This frontend focuses on understanding **real-world API integration** and replacing static data with live backend data.
 
