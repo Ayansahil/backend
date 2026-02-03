@@ -40,8 +40,8 @@ const App = () => {
 
   function fetchNotes() {
     axios
-      .get("http://localhost:3000/api/notes")
-      .then((res) => setNotes(res.data.note))
+      .get("/api/notes")
+      .then((res) => setNotes(res.data.note||[]))
       .catch(() => showToast("Failed to fetch notes", "error"));
   }
 
@@ -54,7 +54,7 @@ const App = () => {
     e.preventDefault();
     if (!createTitle.trim()) return;
     axios
-      .post("http://localhost:3000/api/notes/", {
+      .post("/api/notes/", {
         title: createTitle,
         description: createDesc,
         color: getRandomColor(),
@@ -70,7 +70,7 @@ const App = () => {
 
   function handleDelete(noteId) {
     axios
-      .delete("http://localhost:3000/api/notes/" + noteId)
+      .delete("/api/notes/" + noteId)
       .then(() => {
         showToast("Note deleted 🗑️");
         fetchNotes();
@@ -94,7 +94,7 @@ const App = () => {
     e.preventDefault();
     if (!editTitle.trim() || !editNote) return;
     axios
-      .put("http://localhost:3000/api/notes/" + editNote._id, {
+      .put("/api/notes/" + editNote._id, {
         title: editTitle,
         description: editDescription,
       })
