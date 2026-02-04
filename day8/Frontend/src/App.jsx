@@ -40,7 +40,7 @@ const App = () => {
 
   function fetchNotes() {
     axios
-      .get("/api/notes")
+      .get("https://notes-app-g18m.onrender.com/api/notes")
       .then((res) => setNotes(res.data.note||[]))
       .catch(() => showToast("Failed to fetch notes", "error"));
   }
@@ -54,7 +54,7 @@ const App = () => {
     e.preventDefault();
     if (!createTitle.trim()) return;
     axios
-      .post("/api/notes/", {
+      .post("https://notes-app-g18m.onrender.com/api/notes/", {
         title: createTitle,
         description: createDesc,
         color: getRandomColor(),
@@ -70,7 +70,7 @@ const App = () => {
 
   function handleDelete(noteId) {
     axios
-      .delete("/api/notes/" + noteId)
+      .delete("https://notes-app-g18m.onrender.com/api/notes/" + noteId)
       .then(() => {
         showToast("Note deleted 🗑️");
         fetchNotes();
@@ -94,7 +94,7 @@ const App = () => {
     e.preventDefault();
     if (!editTitle.trim() || !editNote) return;
     axios
-      .put("/api/notes/" + editNote._id, {
+      .put("https://notes-app-g18m.onrender.com/api/notes/" + editNote._id, {
         title: editTitle,
         description: editDescription,
       })
