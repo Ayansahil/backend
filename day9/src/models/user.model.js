@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
-const { use } = require("react");
 
 const userSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: {
+    type: String,
+    unique: [true, "user already exists with this email"],
+  },
   password: String,
 });
 
-const userModel = mongoose.model("users", userSchema, "day9_JWT");
+const userModel = mongoose.model("users", userSchema);
 module.exports = userModel;
